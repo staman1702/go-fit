@@ -1,0 +1,58 @@
+[
+    {
+        "pk": 1,
+        "model": "products.category",
+        "fields": {
+            "name": "cardio",
+            "friendly_name": "Cardio"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "products.category",
+        "fields": {
+            "name": "strenght",
+            "friendly_name": "Strenght"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "products.category",
+        "fields": {
+            "name": "activewear",
+            "friendly_name": "Activewear"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "products.category",
+        "fields": {
+            "name": "proteins",
+            "friendly_name": "Proteins"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "products.category",
+        "fields": {
+            "name": "vitamins",
+            "friendly_name": "Vitamins"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "products.category",
+        "fields": {
+            "name": "bars_drinks_snacks",
+            "friendly_name": "Bars, Drinks & Snacks"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "products.category",
+        "fields": {
+            "name": "programs",
+            "friendly_name": "Programs"
+        }
+    }
+]

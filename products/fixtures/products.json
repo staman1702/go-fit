@@ -1,0 +1,218 @@
+[
+    {
+      "pk": 1,
+      "model": "products.product",
+      "fields": {
+        "sku": "CARDIO001",
+        "name": "Treadmill XT-2000",
+        "description": "Get your cardio on with our top-of-the-line treadmill. Equipped with advanced features for an intense workout.",
+        "price": 1299.99,
+        "category": 1,
+        "rating": 4.5,
+        "image_url": "",
+        "image": "treadmill_xt2000.jpg"
+      }
+    },
+    {
+      "pk": 2,
+      "model": "products.product",
+      "fields": {
+        "sku": "CARDIO002",
+        "name": "Stationary Bike Pro",
+        "description": "Cycling enthusiasts rejoice! Our stationary bike offers a smooth ride with customizable resistance levels.",
+        "price": 899.99,
+        "category": 1,
+        "rating": 4.2,
+        "image_url": "",
+        "image": "stationary_bike_pro.jpg"
+      }
+    },
+    {
+      "pk": 3,
+      "model": "products.product",
+      "fields": {
+        "sku": "STRENGTH001",
+        "name": "Adjustable Dumbbell Set",
+        "description": "Build strength and tone muscles with our adjustable dumbbell set. Perfect for a variety of exercises.",
+        "price": 249.99,
+        "category": 2,
+        "rating": 4.4,
+        "image_url": "",
+        "image": "adjustable_dumbbell_set.jpg"
+      }
+    },
+    {
+      "pk": 4,
+      "model": "products.product",
+      "fields": {
+        "sku": "STRENGTH002",
+        "name": "Resistance Band",
+        "description": "Take your strength training to the next level with our resistance bands. Versatile and portable for workouts anywhere.",
+        "has_sizes": true,
+        "price": 39.99,
+        "category": 2,
+        "rating": 4.3,
+        "image_url": "",
+        "image": "resistance_bands_kit.jpg"
+      }
+    },
+    {
+      "pk": 5,
+      "model": "products.product",
+      "fields": {
+        "sku": "ACTIVE001",
+        "name": "Moisture-Wicking Tank Top",
+        "description": "Stay cool and dry during your workouts with our moisture-wicking tank top. Designed for maximum breathability.",
+        "has_sizes": true,
+        "price": 29.99,
+        "category": 3,
+        "rating": 4.8,
+        "image_url": "",
+        "image": "moisture_wicking_tank_top.jpg"
+      }
+    },
+    {
+      "pk": 6,
+      "model": "products.product",
+      "fields": {
+        "sku": "ACTIVE002",
+        "name": "High-Rise Leggings",
+        "description": "Achieve peak performance in our high-rise leggings. Stretchy, supportive, and stylish for all your activities.",
+        "has_sizes": true,
+        "price": 49.99,
+        "category": 3,
+        "rating": 4.7,
+        "image_url": "",
+        "image": "high_rise_leggings.jpg"
+      }
+    },
+    {
+      "pk": 7,
+      "model": "products.product",
+      "fields": {
+        "sku": "PROTEIN001",
+        "name": "Whey Protein Powder",
+        "description": "Fuel your muscles and aid recovery with our premium whey protein powder. Delicious flavors and easy to mix.",
+        "price": 39.99,
+        "category": 4,
+        "rating": 4.9,
+        "image_url": "",
+        "image": "whey_protein_powder.jpg"
+      }
+    },
+    {
+      "pk": 8,
+      "model": "products.product",
+      "fields": {
+        "sku": "PROTEIN002",
+        "name": "Vegan Protein Bar Variety Pack",
+        "description": "Enjoy guilt-free snacking with our vegan protein bar variety pack. Packed with plant-based protein and flavor.",
+        "price": 24.99,
+        "category": 4,
+        "rating": 4.6,
+        "image_url": "",
+        "image": "vegan_protein_bar.jpg"
+      }
+    },
+    {
+      "pk": 9,
+      "model": "products.product",
+      "fields": {
+        "sku": "VITAMIN001",
+        "name": "Multivitamin Tablets",
+        "description": "Support your overall health with our multivitamin tablets. Formulated with essential vitamins and minerals.",
+        "price": 19.99,
+        "category": 5,
+        "rating": 4.5,
+        "image_url": "",
+        "image": "multivitamin_tablets.jpg"
+      }
+    },
+    {
+      "pk": 10,
+      "model": "products.product",
+      "fields": {
+        "sku": "VITAMIN002",
+        "name": "Omega-3 Fish Oil Capsules",
+        "description": "Promote heart and brain health with our omega-3 fish oil capsules. Pure and potent for maximum benefits.",
+        "price": 29.99,
+        "category": 5,
+        "rating": 4.7,
+        "image_url": "",
+        "image": "omega3_fish_oil.jpg"
+      }
+    },
+    {
+      "pk": 11,
+      "model": "products.product",
+      "fields": {
+        "sku": "SNACK001",
+        "name": "Protein-Rich Energy Bars",
+        "description": "Fuel your workouts with our protein-rich energy bars. Delicious flavors to keep you going strong.",
+        "price": 19.99,
+        "category": 6,
+        "rating": 4.6,
+        "image_url": "",
+        "image": "protein_energy_bars.jpg"
+      }
+    },
+    {
+      "pk": 12,
+      "model": "products.product",
+      "fields": {
+        "sku": "DRINK001",
+        "name": "Electrolyte Sports Drink Mix",
+        "description": "Stay hydrated and replenish electrolytes with our sports drink mix. Perfect for intense workouts and hot days.",
+        "price": 14.99,
+        "category": 6,
+        "rating": 4.4,
+        "image_url": "",
+        "image": "protein_energy_bars.jpg"
+      }
+    },
+    {
+        "pk": 13,
+        "model": "products.product",
+        "fields": {
+          "sku": "PROGRAM001",
+          "name": "Lean & Fit 6-Month Program",
+          "description": "Transform your body with our Lean & Fit 6-Month program. Personalized workouts and nutrition guidance from certified trainers to help you lose weight and build lean muscle.",
+          "price": 149.99,
+          "has_subscription": true,
+          "category": 7,
+          "rating": 4.8,
+          "image_url": "",
+          "image": "lean_fit_program.jpg"
+        }
+      },
+      {
+        "pk": 14,
+        "model": "products.product",
+        "fields": {
+          "sku": "PROGRAM002",
+          "name": "Strength & Power 6-Month Program",
+          "description": "Unleash your strength and power with our 6-month program. Tailored workouts focusing on strength training and muscle gain, supported by expert coaching for optimal results.",
+          "price": 129.99,          
+          "has_subscription": true,
+          "category": 7,
+          "rating": 4.7,
+          "image_url": "",
+          "image": "strength_power_program.jpg"
+        }
+      },
+      {
+        "pk": 15,
+        "model": "products.product",
+        "fields": {
+          "sku": "PROGRAM003",
+          "name": "Shred & Sculpt 6-Month Program",
+          "description": "Achieve a sculpted physique with our Shred & Sculpt 6-Month program. Intense workouts targeting fat loss and muscle definition, combined with nutritional guidance for a toned body.",
+          "price": 159.99,
+          "has_subscription": true,
+          "category": 7,
+          "rating": 4.9,
+          "image_url": "",
+          "image": "shred_sculpt_program.jpg"
+        }
+      }
+]
