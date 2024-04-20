@@ -8,9 +8,7 @@
         "description": "Get your cardio on with our top-of-the-line treadmill. Equipped with advanced features for an intense workout.",
         "price": 1299.99,
         "category": 1,
-        "rating": 4.5,
-        "image_url": "",
-        "image": "treadmill_xt2000.jpg"
+        "rating": 4.5
       }
     },
     {
@@ -22,9 +20,7 @@
         "description": "Cycling enthusiasts rejoice! Our stationary bike offers a smooth ride with customizable resistance levels.",
         "price": 899.99,
         "category": 1,
-        "rating": 4.2,
-        "image_url": "",
-        "image": "stationary_bike_pro.jpg"
+        "rating": 4.2
       }
     },
     {
@@ -36,9 +32,7 @@
         "description": "Build strength and tone muscles with our adjustable dumbbell set. Perfect for a variety of exercises.",
         "price": 249.99,
         "category": 2,
-        "rating": 4.4,
-        "image_url": "",
-        "image": "adjustable_dumbbell_set.jpg"
+        "rating": 4.4
       }
     },
     {
@@ -51,9 +45,7 @@
         "has_sizes": true,
         "price": 39.99,
         "category": 2,
-        "rating": 4.3,
-        "image_url": "",
-        "image": "resistance_bands_kit.jpg"
+        "rating": 4.3
       }
     },
     {
@@ -66,9 +58,7 @@
         "has_sizes": true,
         "price": 29.99,
         "category": 3,
-        "rating": 4.8,
-        "image_url": "",
-        "image": "moisture_wicking_tank_top.jpg"
+        "rating": 4.8
       }
     },
     {
@@ -81,9 +71,7 @@
         "has_sizes": true,
         "price": 49.99,
         "category": 3,
-        "rating": 4.7,
-        "image_url": "",
-        "image": "high_rise_leggings.jpg"
+        "rating": 4.7
       }
     },
     {
@@ -95,9 +83,7 @@
         "description": "Fuel your muscles and aid recovery with our premium whey protein powder. Delicious flavors and easy to mix.",
         "price": 39.99,
         "category": 4,
-        "rating": 4.9,
-        "image_url": "",
-        "image": "whey_protein_powder.jpg"
+        "rating": 4.9
       }
     },
     {
@@ -109,9 +95,7 @@
         "description": "Enjoy guilt-free snacking with our vegan protein bar variety pack. Packed with plant-based protein and flavor.",
         "price": 24.99,
         "category": 4,
-        "rating": 4.6,
-        "image_url": "",
-        "image": "vegan_protein_bar.jpg"
+        "rating": 4.6
       }
     },
     {
@@ -123,9 +107,7 @@
         "description": "Support your overall health with our multivitamin tablets. Formulated with essential vitamins and minerals.",
         "price": 19.99,
         "category": 5,
-        "rating": 4.5,
-        "image_url": "",
-        "image": "multivitamin_tablets.jpg"
+        "rating": 4.5
       }
     },
     {
@@ -137,9 +119,7 @@
         "description": "Promote heart and brain health with our omega-3 fish oil capsules. Pure and potent for maximum benefits.",
         "price": 29.99,
         "category": 5,
-        "rating": 4.7,
-        "image_url": "",
-        "image": "omega3_fish_oil.jpg"
+        "rating": 4.7
       }
     },
     {
@@ -151,9 +131,7 @@
         "description": "Fuel your workouts with our protein-rich energy bars. Delicious flavors to keep you going strong.",
         "price": 19.99,
         "category": 6,
-        "rating": 4.6,
-        "image_url": "",
-        "image": "protein_energy_bars.jpg"
+        "rating": 4.6
       }
     },
     {
@@ -165,9 +143,7 @@
         "description": "Stay hydrated and replenish electrolytes with our sports drink mix. Perfect for intense workouts and hot days.",
         "price": 14.99,
         "category": 6,
-        "rating": 4.4,
-        "image_url": "",
-        "image": "protein_energy_bars.jpg"
+        "rating": 4.4
       }
     },
     {
@@ -180,9 +156,7 @@
           "price": 149.99,
           "has_subscription": true,
           "category": 7,
-          "rating": 4.8,
-          "image_url": "",
-          "image": "lean_fit_program.jpg"
+          "rating": 4.8
         }
       },
       {
@@ -195,9 +169,7 @@
           "price": 129.99,          
           "has_subscription": true,
           "category": 7,
-          "rating": 4.7,
-          "image_url": "",
-          "image": "strength_power_program.jpg"
+          "rating": 4.7
         }
       },
       {
@@ -210,9 +182,7 @@
           "price": 159.99,
           "has_subscription": true,
           "category": 7,
-          "rating": 4.9,
-          "image_url": "",
-          "image": "shred_sculpt_program.jpg"
+          "rating": 4.9
         }
       }
 ]
