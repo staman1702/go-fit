@@ -12,9 +12,20 @@
 {% block content %}
 <div class="container-fluid">
   <div class="row">
+    <div class="col text-center text-white mt-3">
+        <h2 class="logo-font">Community</h2>
+        {% for c in current_subjects %}
+        <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ c.name }}">
+            <span class="p-2 mt-2 badge badge-white text-white rounded-0 border border-dark">{{ c.friendly_name }}</span>
+        </a>
+        {% endfor %}
+        <hr class="w-50 mb-1">
+    </div>
+</div>
+  <div class="row">
     <div class="col-12">
       <div class="row">
-        {% for post in post_list %}
+        {% for post in posts %}
         <div class="col-md-4 px-md-4">
           <div class="card my-4">
             <div class="card-body">
@@ -31,7 +42,7 @@
               </a>
               <hr />
                 {% for subject in post.subjects.all %}
-                <a class="category-badge text-decoration-none" href="#">
+                <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ post.subject.name }}">
                     <span class="p-2 mb-2 badge badge-white text-black rounded-0 border border-dark">{{ subject.friendly_name }}</span>
                 </a>
                 {% endfor %}              
