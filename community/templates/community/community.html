@@ -16,14 +16,25 @@
         <h2 class="logo-font">Community</h2>
         {% for c in current_subjects %}
         <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ c.name }}">
-            <span class="p-2 mt-2 badge badge-white text-white rounded-0 border border-dark">{{ c.friendly_name }}</span>
+            <span class="p-2 mt-2 badge badge-white text-black bg-white rounded-0 border border-dark">{{ c.friendly_name }}</span>
         </a>
         {% endfor %}
-        <hr class="w-50 mb-1">
     </div>
 </div>
   <div class="row">
     <div class="col-12">
+      <div class="col-12 col-md-6 order-md-first">
+        <p class="text-muted mt-3 text-center text-md-left">
+            {% if current_subjects %}
+                <span class="small"><a href="{% url 'community' %}">Community Home</a> | </span>
+            {% endif %}
+            {% if posts|length == 1 %}
+            {{ posts|length }} Subject
+            {% else %}
+            {{ posts|length }} Subjects
+            {% endif %}
+        </p>
+      </div>
       <div class="row">
         {% for post in posts %}
         <div class="col-md-4 px-md-4">
@@ -42,7 +53,7 @@
               </a>
               <hr />
                 {% for subject in post.subjects.all %}
-                <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ post.subject.name }}">
+                <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ subject.friendly_name  }}">
                     <span class="p-2 mb-2 badge badge-white text-black rounded-0 border border-dark">{{ subject.friendly_name }}</span>
                 </a>
                 {% endfor %}              

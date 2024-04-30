@@ -12,9 +12,8 @@ def all_posts(request):
     if request.GET:        
         if 'subject' in request.GET:
             subjects = request.GET['subject'].split(',')
-            posts = posts.filter(subject__name__in=subjects)
+            posts = posts.filter(subjects__name__in=subjects)
             subjects = Subject.objects.filter(name__in=subjects)
-
 
 
     context = {
