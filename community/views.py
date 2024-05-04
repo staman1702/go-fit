@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from .models import Post, Subject
+from .forms import PostForm
 
 # Create your views here.
 
@@ -28,3 +29,13 @@ def post_detail(request, slug):
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
     return render(request, "community/post_detail.html", {"post": post},)
+
+def add_post(request):
+    """ Add a post to the community """
+    form = PostForm()
+    template = 'community/add_post.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

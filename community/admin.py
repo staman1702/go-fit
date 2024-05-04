@@ -14,5 +14,11 @@ class PostAdmin(admin.ModelAdmin):
 
     ordering = ('created_on',)
 
+class SubjectAdmin(admin.ModelAdmin):
+    list_display = (
+        'friendly_name',
+        'name',
+    )
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Subject)
