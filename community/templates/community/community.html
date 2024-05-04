@@ -20,21 +20,33 @@
         </a>
         {% endfor %}
     </div>
-</div>
+  </div>
   <div class="row">
-    <div class="col-12">
-      <div class="col-12 col-md-6 order-md-first">
-        <p class="text-muted mt-3 text-center text-md-left">
-            {% if current_subjects %}
-                <span class="small"><a href="{% url 'community' %}">Community Home</a> | </span>
+        <div class="col-sm-6 order-md-first text-md-left">
+          <p class="text-muted mt-3 text-center text-md-left">
+              {% if current_subjects %}
+                  <span class="small"><a href="{% url 'community' %}">Community Home</a> | </span>
+              {% endif %}
+              {% if posts|length == 1 %}
+              {{ posts|length }} Subject
+              {% else %}
+              {{ posts|length }} Subjects
+              {% endif %}
+          </p>
+        </div>
+        {% if request.user.is_authenticated %}
+          <div class="col-sm-6 order-md-last text-md-right">
+            <div class="container">        
+                <a href="{% url 'add_post' %}" class="btn btn-black rounded-0 my-2">
+                  <span class="icon mr-2">
+                    <i class="fa-regular fa-square-plus"></i>
+                  </span>
+                  <span class="text-uppercase">Add New Post</span>
+                </a>
+            </div>
             {% endif %}
-            {% if posts|length == 1 %}
-            {{ posts|length }} Subject
-            {% else %}
-            {{ posts|length }} Subjects
-            {% endif %}
-        </p>
-      </div>
+        </div>
+  </div>   
       <div class="row">
         {% for post in posts %}
         <div class="col-md-4 px-md-4">

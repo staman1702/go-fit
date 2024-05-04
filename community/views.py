@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
 
 from .models import Post, Subject
 from .forms import PostForm
@@ -32,7 +33,17 @@ def post_detail(request, slug):
 
 def add_post(request):
     """ Add a post to the community """
-    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added post!')
+            return redirect(reverse('add_post'))
+        else:
+            messages.error(request, 'Failed to add post. Please ensure the form is valid.')
+    else:
+        form = PostForm()
+    
     template = 'community/add_post.html'
     context = {
         'form': form,

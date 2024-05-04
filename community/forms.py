@@ -6,7 +6,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'content', 'excerpt',
+        fields = ('user_profile','title', 'content', 'excerpt',
                   'subjects', 'image_url', 'image',)
         widgets = {
             'subjects': forms.CheckboxSelectMultiple
