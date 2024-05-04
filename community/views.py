@@ -20,7 +20,7 @@ def all_posts(request):
         'posts': posts,
         'current_subjects': subjects,
     }
-
+    
     return render(request, 'community/community.html', context)
 
 def post_detail(request, slug):

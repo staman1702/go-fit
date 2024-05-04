@@ -42,7 +42,7 @@
             <div class="card-body">
               <div class="image-container">
                 <div class="image-flash">
-                  <p class="author">Author: {{ post.author }}</p>
+                  <p class="author">Author: {{ post.user_profile }}</p>
                 </div>
               </div>
               <a href="{% url 'post_detail' post.slug %}" class="post-link">
@@ -53,7 +53,7 @@
               </a>
               <hr />
                 {% for subject in post.subjects.all %}
-                <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ subject.friendly_name  }}">
+                <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ subject.name  }}">
                     <span class="p-2 mb-2 badge badge-white text-black rounded-0 border border-dark">{{ subject.friendly_name }}</span>
                 </a>
                 {% endfor %}              

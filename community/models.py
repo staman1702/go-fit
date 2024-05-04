@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from profiles.models import UserProfile
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
@@ -22,15 +22,15 @@ class Subject(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="community_posts"
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True, related_name="posts"
     )
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
-    subjects = models.ManyToManyField('Subject', null=True, blank=True)
+    subjects = models.ManyToManyField('Subject', blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
@@ -38,4 +38,4 @@ class Post(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"{self.title} | posted by {self.author}"
+        return f"{self.title} | posted by {self.user_profile}"

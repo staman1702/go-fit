@@ -9,6 +9,7 @@ class PostAdmin(admin.ModelAdmin):
         'slug',
         'status',
         'created_on',
+        'user_profile',
     )
 
     ordering = ('created_on',)

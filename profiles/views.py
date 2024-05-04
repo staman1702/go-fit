@@ -3,6 +3,8 @@ from django.contrib import messages
 
 from .models import UserProfile
 from .forms import UserProfileForm
+from checkout.models import Order
+from community.models import Post
 
 # Create your views here.
 def profile(request):
@@ -17,13 +19,42 @@ def profile(request):
 
     form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
+    posts = profile.posts.all()
 
     template = 'profiles/profile.html'
     context = {
         'profile': profile,
         'form': form,
         'orders': orders,
+        'posts' : posts,
         'on_profile_page': True
+    }
+
+    return render(request, template, context)
+
+def order_history(request, order_number):
+    order = get_object_or_404(Order, order_number=order_number)
+
+    messages.info(request, (
+        f'This is a past confirmation for order number {order_number}. '
+        'A confirmation email was sent on the order date.'
+    ))
+
+    template = 'checkout/checkout_success.html'
+    context = {
+        'order': order,
+        'from_profile': True,
+    }
+
+    return render(request, template, context)
+
+def post_history(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+
+    template = 'community/post_detail.html'
+    context = {
+        'post': post,
+        'from_profile': True,
     }
 
     return render(request, template, context)
