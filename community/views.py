@@ -34,15 +34,17 @@ def post_detail(request, slug):
 def add_post(request):
     """ Add a post to the community """
     if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
+        form = PostForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.user_profile = request.user.userprofile  # Assuming UserProfile is linked to the User model
+            post.save()
             messages.success(request, 'Successfully added post!')
             return redirect(reverse('add_post'))
         else:
             messages.error(request, 'Failed to add post. Please ensure the form is valid.')
     else:
-        form = PostForm()
+        form = PostForm(user=request.user)
     
     template = 'community/add_post.html'
     context = {
@@ -73,3 +75,10 @@ def edit_post(request, slug):
     }
 
     return render(request, template, context)
+
+def delete_post(request, slug):
+    """ Delete a product from the store """
+    post = get_object_or_404(Post, slug=slug)
+    post.delete()
+    messages.success(request, 'Post deleted!')
+    return redirect(reverse('community'))

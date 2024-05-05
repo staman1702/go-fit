@@ -60,6 +60,12 @@
         </span>
         <span class="text-uppercase">Edit Post</span>
       </a>
+      <a href="{% url 'delete_post' post.slug %}" class="btn btn-black rounded-0 my-2 ml-2">
+        <span class="icon mr-2">
+          <i class="fa-solid fa-trash-can"></i>
+        </span>
+        <span class="text-uppercase">Delete Post</span>
+      </a>
       {% endif %}
     </div>
   </div>
