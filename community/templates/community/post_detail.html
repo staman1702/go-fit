@@ -53,7 +53,7 @@
           <span class="text-uppercase">Back to Posts</span>
         </a>
       {% endif %}
-      {% if request.user.is_authenticated and request.user == post.user_profile.user %}
+      {% if request.user.is_superuser or request.user == post.user_profile.user %}
       <a href="{% url 'edit_post' post.slug %}" class="btn btn-black rounded-0 my-2 ml-2">
         <span class="icon mr-2">
           <i class="fa-solid fa-pen-to-square"></i>

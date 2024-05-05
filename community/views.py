@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Post, Subject
 from .forms import PostForm
@@ -31,8 +32,13 @@ def post_detail(request, slug):
     post = get_object_or_404(queryset, slug=slug)
     return render(request, "community/post_detail.html", {"post": post},)
 
+@login_required
 def add_post(request):
     """ Add a post to the community """
+    if not request.user.is_authenticated:
+        messages.error(request, 'Sorry, only authenticated account can do that.')
+        return redirect(reverse('home'))
+    
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
@@ -53,9 +59,15 @@ def add_post(request):
 
     return render(request, template, context)
 
+@login_required
 def edit_post(request, slug):
     """ Edit a post in community """
     post = get_object_or_404(Post, slug=slug)
+
+    if not request.user.is_superuser and request.user != post.user_profile.user:
+        messages.error(request, 'Sorry, only post creator/site admin can do that.')
+        return redirect(reverse('home'))
+        
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
@@ -76,9 +88,15 @@ def edit_post(request, slug):
 
     return render(request, template, context)
 
+@login_required
 def delete_post(request, slug):
     """ Delete a product from the store """
     post = get_object_or_404(Post, slug=slug)
+
+    if not request.user.is_superuser and request.user != post.user_profile.user:
+        messages.error(request, 'Sorry, only post creator/site admin can do that.')
+        return redirect(reverse('home'))
+    
     post.delete()
     messages.success(request, 'Post deleted!')
     return redirect(reverse('community'))
