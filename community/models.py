@@ -31,9 +31,7 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
-    subjects = models.ManyToManyField('Subject', blank=True)
-    image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
+    subjects = models.ManyToManyField('Subject', blank=True)    
 
     class Meta:
         ordering = ["created_on"]
