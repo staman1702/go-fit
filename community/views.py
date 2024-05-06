@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .models import Post, Subject
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 
 # Create your views here.
 
@@ -30,7 +30,36 @@ def post_detail(request, slug):
     
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
-    return render(request, "community/post_detail.html", {"post": post},)
+    comments = post.comments.all().order_by("-created_on")
+    comment_count = post.comments.filter(approved=True).count()
+
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user_profile = request.user.userprofile
+            comment.post = post
+            comment.save()
+
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Comment submitted and awaiting approval'
+            )
+        else:
+            messages.error(request, 'Failed to comment. Please ensure the form is valid.')
+
+    comment_form = CommentForm()
+
+    return render(
+        request, 
+        "community/post_detail.html", 
+        {
+            "post": post,
+            "comments": comments,
+            "comment_count": comment_count,
+            "comment_form": comment_form,
+        },
+    )
 
 @login_required
 def add_post(request):
@@ -43,7 +72,7 @@ def add_post(request):
         form = PostForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user_profile = request.user.userprofile  # Assuming UserProfile is linked to the User model
+            post.user_profile = request.user.userprofile  
             post.save()
             messages.success(request, 'Successfully added post!')
             return redirect(reverse('add_post'))

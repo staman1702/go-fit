@@ -2,104 +2,111 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+<div class="container header-container">
+  <div class="row">
+    <div class="col"></div>
+  </div>
+</div>
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
   <div class="row">
     <div class="col text-center text-white mt-3">
-        <h2 class="logo-font">Community</h2>
-        {% for c in current_subjects %}
-        <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ c.name }}">
-            <span class="p-2 mt-2 badge badge-white text-black bg-white rounded-0 border border-dark">{{ c.friendly_name }}</span>
-        </a>
-        {% endfor %}
+      <h2 class="logo-font">Community</h2>
+      {% for c in current_subjects %}
+      <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ c.name }}">
+        <span class="p-2 mt-2 badge badge-white text-black bg-white rounded-0 border border-dark">{{ c.friendly_name
+          }}</span>
+      </a>
+      {% endfor %}
     </div>
   </div>
-  <div class="row">
-        <div class="col-sm-6 order-md-first text-md-left">
-          <p class="text-muted mt-3 text-center text-md-left">
-              {% if current_subjects %}
-                  <span class="small"><a href="{% url 'community' %}">Community Home</a> | </span>
-              {% endif %}
-              {% if posts|length == 1 %}
-              {{ posts|length }} Subject
-              {% else %}
-              {{ posts|length }} Subjects
-              {% endif %}
-          </p>
+  <div class="post-container col-10 offset-1">
+    <div class="row">
+      <div class="col-sm-6 order-md-first text-md-left">
+        <p class="text-muted mt-3 text-center text-md-left">
+          {% if current_subjects %}
+          <span class="small"><a href="{% url 'community' %}">Community Home</a> | </span>
+          {% endif %}
+          {% if posts|length == 1 %}
+          {{ posts|length }} Subject
+          {% else %}
+          {{ posts|length }} Subjects
+          {% endif %}
+        </p>
+      </div>      
+      <div class="col-sm-6 order-md-last text-md-right">
+        <div class="container">
+          {% if request.user.is_authenticated %}
+          <a href="{% url 'add_post' %}" class="btn btn-black rounded-0 my-2">
+            <span class="icon mr-2">
+              <i class="fa-regular fa-square-plus"></i>
+            </span>
+            <span class="text-uppercase">Add New Post</span>
+          </a>
+          {% else %}
+          <a href="{% url 'account_login' %}" class="btn btn-black rounded-0 my-2">
+            <span class="icon mr-2">
+              <i class="fa-regular fa-circle-user"></i>
+            </span>
+            <span class="text-uppercase">Login to Post</span>
+          </a>
+          {% endif %}
         </div>
-        {% if request.user.is_authenticated %}
-          <div class="col-sm-6 order-md-last text-md-right">
-            <div class="container">        
-                <a href="{% url 'add_post' %}" class="btn btn-black rounded-0 my-2">
-                  <span class="icon mr-2">
-                    <i class="fa-regular fa-square-plus"></i>
-                  </span>
-                  <span class="text-uppercase">Add New Post</span>
-                </a>
-            </div>
-            {% endif %}
-        </div>
-  </div>   
-      <div class="row">
-        {% for post in posts %}
-        <div class="col-md-4 px-md-4">
-          <div class="card my-4">
-            <div class="card-body">              
-                  <p class="author">Author: {{ post.user_profile }}</p>              
-              <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                <h2 class="mb-0 font-weight-bold text-black">{{ post.title }}</h2>
-                <p class="text-black h6">
-                    {{ post.excerpt }}
-                </p>
-              </a>
-              <hr />
-                {% for subject in post.subjects.all %}
-                <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ subject.name  }}">
-                    <span class="p-2 mb-2 badge badge-white text-black rounded-0 border border-dark">{{ subject.friendly_name }}</span>
-                </a>
-                {% endfor %}              
-              <p class="text-muted h6">{{ post.created_on}}
+      </div>      
+    </div>
+    <div class="row">
+      {% for post in posts %}
+      <div class="col-md-4 px-md-4">
+        <div class="card my-4">
+          <div class="card-body">
+            <p class="author">Author: {{ post.user_profile }}</p>
+            <a href="{% url 'post_detail' post.slug %}" class="post-link">
+              <h2 class="mb-0 font-weight-bold text-black">{{ post.title }}</h2>
+              <p class="text-black h6">
+                {{ post.excerpt }}
+              </p>
+            </a>
+            <hr />
+            {% for subject in post.subjects.all %}
+            <a class="category-badge text-decoration-none" href="{% url 'community' %}?subject={{ subject.name  }}">
+              <span class="p-2 mb-2 badge badge-white text-black rounded-0 border border-dark">
+                {{ subject.friendly_name }}</span>
+            </a>
+            {% endfor %}
+            <p class="text-muted h6">{{ post.created_on}}
               {% if request.user.is_superuser %}
-                <small class="ml-3">
-                  <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
-                  <a class="text-danger" href="{% url 'delete_post' post.slug %}">Delete</a>
-                </small>
+              <small class="ml-3">
+                <a href="{% url 'edit_post' post.slug %}">Edit</a> |
+                <a class="text-danger" href="{% url 'delete_post' post.slug %}">Delete</a>
+              </small>
               {% endif %}
             </p>
-            </div>
           </div>
         </div>
-        {% if forloop.counter|divisibleby:3 %}
       </div>
-      <div class="row">{% endif %} {% endfor %}</div>
+      {% if forloop.counter|divisibleby:3 %}
     </div>
+    <div class="row">{% endif %} {% endfor %}</div>
   </div>
-  {% if is_paginated %}
-  <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-      {% if page_obj.has_previous %}
-      <li>
-        <a href="?page={{ page_obj.previous_page_number }}" class="page-link"
-          >&laquo; PREV</a
-        >
-      </li>
-      {% endif %} {% if page_obj.has_next %}
-      <li>
-        <a href="?page={{ page_obj.next_page_number }}" class="page-link">
-          NEXT &raquo;</a
-        >
-      </li>
-      {% endif %}
-    </ul>
-  </nav>
-  {% endif %}
 </div>
-
+</div>
+{% if is_paginated %}
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li>
+      <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
+    </li>
+    {% endif %} {% if page_obj.has_next %}
+    <li>
+      <a href="?page={{ page_obj.next_page_number }}" class="page-link">
+        NEXT &raquo;</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
+</div>
 {% endblock %}
