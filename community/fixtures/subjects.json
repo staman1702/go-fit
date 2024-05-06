@@ -1,0 +1,26 @@
+[
+    {
+        "pk": 1,
+        "model": "community.subject",
+        "fields": {
+            "name": "equipment",
+            "friendly_name": "Equipment"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "community.subject",
+        "fields": {
+            "name": "nutrition",
+            "friendly_name": "Nutrition"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "community.subject",
+        "fields": {
+            "name": "workouts",
+            "friendly_name": "Workouts"
+        }
+    }
+]
