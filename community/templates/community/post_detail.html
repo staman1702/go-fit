@@ -15,7 +15,14 @@
       <div class="row g-0">
         <div class="col-md-6 masthead-text text-white">
             <h1 class="post-title">{{ post.title }}</h1>
-            <p class="post-subtitle">{{ post.user_profile }} | {{ post.created_on }}</p>
+            <p class="post-subtitle">{{ post.user_profile }} | {{ post.created_on }}
+              {% if request.user.is_superuser %}
+                <small class="ml-3">
+                  <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
+                  <a class="text-danger" href="{% url 'delete_post' post.slug %}">Delete</a>
+                </small>
+              {% endif %}
+            </p>
             {% for subject in post.subjects.all %}
                 <a class="category-badge text-decoration-none" href="#">
                     <span class="p-2 mb-2 badge badge-white text-white rounded-0 border border-dark">{{ subject.friendly_name }}</span>
@@ -53,7 +60,7 @@
           <span class="text-uppercase">Back to Posts</span>
         </a>
       {% endif %}
-      {% if request.user.is_superuser or request.user == post.user_profile.user %}
+      {% if request.user.is_authenticated and request.user == post.user_profile.user %}
       <a href="{% url 'edit_post' post.slug %}" class="btn btn-black rounded-0 my-2 ml-2">
         <span class="icon mr-2">
           <i class="fa-solid fa-pen-to-square"></i>

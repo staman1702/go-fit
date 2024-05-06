@@ -51,12 +51,8 @@
         {% for post in posts %}
         <div class="col-md-4 px-md-4">
           <div class="card my-4">
-            <div class="card-body">
-              <div class="image-container">
-                <div class="image-flash">
-                  <p class="author">Author: {{ post.user_profile }}</p>
-                </div>
-              </div>
+            <div class="card-body">              
+                  <p class="author">Author: {{ post.user_profile }}</p>              
               <a href="{% url 'post_detail' post.slug %}" class="post-link">
                 <h2 class="mb-0 font-weight-bold text-black">{{ post.title }}</h2>
                 <p class="text-black h6">
@@ -69,7 +65,14 @@
                     <span class="p-2 mb-2 badge badge-white text-black rounded-0 border border-dark">{{ subject.friendly_name }}</span>
                 </a>
                 {% endfor %}              
-              <p class="text-muted h6">{{ post.created_on}}</p>
+              <p class="text-muted h6">{{ post.created_on}}
+              {% if request.user.is_superuser %}
+                <small class="ml-3">
+                  <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
+                  <a class="text-danger" href="{% url 'delete_post' post.slug %}">Delete</a>
+                </small>
+              {% endif %}
+            </p>
             </div>
           </div>
         </div>
