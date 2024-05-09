@@ -49,6 +49,7 @@
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                                         <p class="my-0"><strong>Size: </strong>{% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                                        {% if item.product.has_expiration_date %}<p class="my-0"><strong>Expiry Date: </strong>{{ item.expiry_date|date:"Y-m-d" }}{% endif %}</p>
                                         <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                     </td>
                                     <td class="py-3">
@@ -82,6 +83,9 @@
                                                     {% if item.product.has_sizes %}
                                                         <input type="hidden" name="product_size" value="{{ item.size }}">
                                                     {% endif %}
+                                                    {% if item.product.has_expiration_date %}
+                                                        <input type="hidden" name="product_expiry_date" value="{{ item.expiry_date }}">
+                                                    {% endif %}                                                   
                                                 </div>
                                             </div>
                                         </form>

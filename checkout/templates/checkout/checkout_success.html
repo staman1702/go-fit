@@ -61,7 +61,8 @@
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <p class="small mb-0 text-black font-weight-bold">
-                            {{ item.product.name }}{% if item.product_size %} - Size {{ item.product.size|upper }}{% endif %}
+                            {{ item.product.name }}{% if item.product_size %} - Size {{ item.product_size|upper }}{% endif %}
+                            {% if item.product.has_expiration_date %} - Expiry Date {{ item.product_expiry_date|date:"Y-m-d" }}{% endif %}
                         </p>
                     </div>
                     <div class="col-12 col-md-8 text-md-right">

@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.utils import timezone
+from datetime import timedelta
+
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -63,6 +66,7 @@ def checkout(request):
                             order=order,
                             product=product,
                             quantity=item_data,
+                            product_expiry_date=timezone.now() + timedelta(days=365),
                         )
                         order_line_item.save()
                     else:
