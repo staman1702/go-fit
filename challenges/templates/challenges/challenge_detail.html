@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+  <div class="row">
+    <div class="col"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="post-container col-10 offset-1">
+  <div class="row g-0">
+    <div class="col-md-6 text text-white">
+      <h1 class="post-title">{{ challenge.title }}</h1>
+      {% if request.user.is_superuser %}
+      <small class="ml-3">
+        <a href="#">Edit</a> |
+        <a class="text-danger" href="#">Delete</a>
+      </small>
+      {% endif %}
+      {% for subject in challenge.subjects.all %}
+      <a class="category-badge text-decoration-none" href="#">
+        <span class="p-2 mb-2 badge badge-white text-white rounded-0 border border-dark">
+          {{ subject.friendly_name }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col card mb-4 mt-3 left top">
+      <div class="card-body">
+        <p>
+          Starting time:
+          <a class="category-badge text-decoration-none">
+            <span class="p-2 mt-2 badge badge-white text-white bg-black rounded-0 border border-dark">
+              {{ challenge.start_date }}</span>
+          </a>
+        </p>
+        <p>End time:
+          <a class="category-badge text-decoration-none">
+            <span class="p-2 mt-2 badge badge-white text-white bg-black rounded-0 border border-dark">
+              {{ challenge.end_date }}</span>
+          </a>
+        </p>
+        <hr />
+        <p class="card-text">{{ challenge.content | safe }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <a href="{% url 'challenges' %}" class="btn btn-black rounded-0 my-2">
+      <span class="icon mr-2">
+        <i class="fa-solid fa-table"></i>
+      </span>
+      <span class="text-uppercase">Back to Challenges</span>
+    </a>
+  </div>
+
+  <!-- Add gallery images here -->
+
+  <section id="photos">
+    <img src="{{ challenge.main_image.url }}" alt="{{ challenge.title }}">
+    {% for image in challenge.gallery_images.all %}
+    <img src="{{ image.image.url }}" alt="Gallery Image">
+    {% empty %}
+    <p>No gallery images available.</p>
+    {% endfor %}
+  </section>
+</div>
+
+{% endblock content %}

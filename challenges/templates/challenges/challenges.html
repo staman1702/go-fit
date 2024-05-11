@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+  <div class="row">
+    <div class="col"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col text-center text-white mt-3">
+      <h2 class="logo-font">Challenges</h2>
+      {% for s in current_subjects %}
+      <a class="category-badge text-decoration-none" href="{% url 'challenges' %}?subject={{ s.name }}">
+        <span class="p-2 mt-2 badge badge-white text-black bg-white rounded-0 border border-dark">
+          {{ s.friendly_name }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="post-container col-10 offset-1">
+    <div class="row">
+      <div class="col-sm-6 order-md-first text-md-left">
+        <p class="text-muted mt-3 text-center text-md-left">
+          {% if current_subjects %}
+          <span class="small"><a href="{% url 'challenges' %}">Challenges Home</a> | </span>
+          {% endif %}
+          {% if challenges|length == 1 %}
+          {{ challenges|length }} Challenge
+          {% else %}
+          {{ challenges|length }} Challenges
+          {% endif %}
+        </p>
+      </div>
+      <div class="col-sm-6 order-md-last text-md-right">
+        <div class="container">
+          {% if request.user.is_superuser %}
+          <a href="{% url 'create_challenge' %}" class="btn btn-black rounded-0 my-2">
+            <span class="icon mr-2">
+              <i class="fa-regular fa-square-plus"></i>
+            </span>
+            <span class="text-uppercase">Add New Challenge</span>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {% for challenge in challenges %}
+      <div class="col-md-12 px-md-4">
+        <div class="card my-4">
+          <div class="card-body">
+            <a href="{% url 'challenge_detail' challenge.slug %}" class="post-link">
+              <h2 class="mb-0 font-weight-bold text-black">{{ challenge.title }}</h2>
+              <p class="text-black h6">
+                {{ challenge.content }}
+              </p>
+            </a>
+            <hr />
+            {% if challenge.main_image %}
+            <div class="main-image-container mb-2">
+              <img src="{{ challenge.main_image.url }}" class="main-image" alt="{{ challenge.title }}">
+            </div>
+            {% endif %}
+            {% for subject in challenge.subjects.all %}
+            <a class="category-badge text-decoration-none" href="{% url 'challenges' %}?subject={{ subject.name }}">
+              <span class="p-2 mb-2 badge badge-white text-black rounded-0 border border-dark">
+                {{ subject.friendly_name }}</span>
+            </a>
+            {% endfor %}
+            <p class="text-muted h6">{{ challenge.start_date }} - {{ challenge.end_date }}
+              {% if request.user.is_superuser %}
+              <small class="ml-3">
+                <a href="#">Edit</a> |
+                <a class="text-danger" href="#">Delete</a>
+              </small>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">{% endfor %}</div>
+  </div>
+</div>
+{% endblock %}
