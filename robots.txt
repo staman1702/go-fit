@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /bag/
+Sitemap: https://go-fit-493a972aae08.herokuapp.com/sitemap.xml
