@@ -28,4 +28,4 @@ class Challenge(models.Model):
 
 class GalleryImage(models.Model):
     challenge = models.ForeignKey(Challenge, related_name='gallery_images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='challenge_gallery/')
+    image = models.ImageField(null=True, blank=True, upload_to='challenge_gallery/')

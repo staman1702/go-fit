@@ -16,8 +16,8 @@
       <h1 class="post-title">{{ challenge.title }}</h1>
       {% if request.user.is_superuser %}
       <small class="ml-3">
-        <a href="#">Edit</a> |
-        <a class="text-danger" href="#">Delete</a>
+        <a href="{% url 'edit_challenge' challenge.slug %}">Edit</a> |
+        <a class="text-danger" href="{% url 'delete_challenge' challenge.slug %}">Delete</a>
       </small>
       {% endif %}
       {% for subject in challenge.subjects.all %}
@@ -63,7 +63,9 @@
   <!-- Add gallery images here -->
 
   <section id="photos">
+    {% if challenge.main_image %}
     <img src="{{ challenge.main_image.url }}" alt="{{ challenge.title }}">
+    {% endif %}
     {% for image in challenge.gallery_images.all %}
     <img src="{{ image.image.url }}" alt="Gallery Image">
     {% empty %}

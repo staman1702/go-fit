@@ -64,3 +64,48 @@ def challenge_detail(request, slug):
         }
     
     return render(request, template, context )
+
+@login_required
+def edit_challenge(request, slug):
+    challenge = get_object_or_404(Challenge, slug=slug)
+
+    # Check if the current user is superuser
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only the store owner can edit challenges.')
+        return redirect(reverse('challenge_detail', args=[slug]))
+    
+    if request.method == 'POST':
+        challenge_form = ChallengeForm(request.POST, request.FILES, instance=challenge)
+        formset = GalleryImageFormSet(request.POST, request.FILES, instance=challenge)
+        if challenge_form.is_valid() and formset.is_valid():
+            challenge = challenge_form.save()
+            formset.save()
+            messages.success(request, 'Challenge updated successfully.')
+            return redirect(reverse('challenge_detail', args=[slug]))
+        else:
+            messages.error(request, 'Failed to update challenge. Please ensure the form is valid.')
+    else:
+        challenge_form = ChallengeForm(instance=challenge)
+        formset = GalleryImageFormSet(instance=challenge)
+
+    template = 'challenges/edit_challenge.html'
+    context = {
+        'challenge_form': challenge_form,
+        'formset': formset,
+        'challenge': challenge,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def delete_challenge(request, slug):
+    """ Delete a challenge from workouts """
+    challenge = get_object_or_404(Challenge, slug=slug)
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only post creator/site admin can do that.')
+        return redirect(reverse('home'))
+    
+    challenge.delete()
+    messages.success(request, 'Challenge deleted!')
+    return redirect(reverse('challenges'))
