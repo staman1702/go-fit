@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import handler404, handler500, handler403, handler405
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,3 +31,8 @@ urlpatterns = [
     path('checkout/', include('checkout.urls')),
     path('profile/', include('profiles.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler403 = 'go_fit.views.handler403'
+handler404 = 'go_fit.views.handler404'
+handler405 = 'go_fit.views.handler405'
+handler500 = 'go_fit.views.handler500'
