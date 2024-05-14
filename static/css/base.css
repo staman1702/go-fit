@@ -154,6 +154,15 @@ input[name='q']::placeholder {
     margin-bottom: 4px;
 }
 
+/* mailchimp */
+
+#mc_embed_signup {
+    background: #fff;
+    clear: left;
+    font: 14px Helvetica, Arial, sans-serif;
+    width: 600px;
+}
+
 
 /* ------------------------------- bootstrap toasts */
 
@@ -294,5 +303,10 @@ input[name='q']::placeholder {
 
     body {
         height: calc(100vh - 116px);
+    }
+
+    #mc_embed_signup {        
+        clear: left;
+        width: auto;
     }
 }

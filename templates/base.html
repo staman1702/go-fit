@@ -2,6 +2,7 @@
 
 <!doctype html>
 <html lang="en">
+
 <head>
 
     {% block meta %}
@@ -14,9 +15,11 @@
     {% endblock %}
 
     {% block corecss %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
     {% endblock %}
 
     {% block extra_css %}
@@ -24,83 +27,157 @@
 
     {% block corejs %}
     <script src="https://kit.fontawesome.com/97528b5a5b.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!-- Mailchimp -->
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script
+        type="text/javascript">(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'ADDRESS'; ftypes[3] = 'address'; fnames[4] = 'PHONE'; ftypes[4] = 'phone'; fnames[5] = 'BIRTHDAY'; ftypes[5] = 'birthday'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
     {% block extra_js %}
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '#base-mailchimp', function (event) {
+                event.stopPropagation();
+                $('#mc_embed_shell').toggle();
+            });
+        });
+    </script>    
     {% endblock %}
 
     <title>Go Fit {% block extra_title %}{% endblock %}</title>
-    <meta name="description"
-        content="Ireland based fitness online shop and community that powers your health journey by 
+    <meta name="description" content="Ireland based fitness online shop and community that powers your health journey by 
         providing you with gym equipment, nutrition products and workout plans and challenges">
-    <meta name="keywords" 
-        content="go fit, equipment, gym equipment for sale, fitness online shop, 6 month fitness plan, dumbbells for sale dublin,
+    <meta name="keywords" content="go fit, equipment, gym equipment for sale, fitness online shop, 6 month fitness plan, dumbbells for sale dublin,
         functional gym equipment, nutrition, protein, whey protein powder, supplements, vitamins, fitness challenges, workout, ireland, 
         fitness community, fitness post">
 </head>
+
 <body>
-  <header class="container-fluid fixed-top">
+    <header class="container-fluid fixed-top">
         <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
-          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-              <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                  <h2 class="logo-font text-black nav-link my-0">Go Fit</h2>
-              </a>
-          </div>
-          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-              <form method="GET" action="{% url 'products' %}">
-                  <div class="input-group w-100">
-                      <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search your stuff here">
-                      <div class="input-group-append">
-                          <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                              <span class="icon">
-                                  <i class="fas fa-search"></i>
-                              </span>
-                          </button>
-                      </div>
-                  </div>
-              </form>
-          </div>
-          <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+                <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                    <h2 class="logo-font text-black nav-link my-0">Go Fit</h2>
+                </a>
+            </div>
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <form method="GET" action="{% url 'products' %}">
+                    <div class="input-group w-100">
+                        <input class="form-control border border-black rounded-0" type="text" name="q"
+                            placeholder="Search your stuff here">
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item">
-                        <a class="text-black nav-link" href="" rel="noopener">
+                        <a class="text-black nav-link" href="https://www.facebook.com/profile.php?id=61559866552324"
+                            target="_blank" id="facebook" rel="noopener">
                             <div class="text-center">
                                 <div><i class="fa-brands fa-facebook"></i></div>
                             </div>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="text-black nav-link" href="" rel="noopener">
+                        <a class="text-black nav-link" href="https://www.instagram.com/gofit8298/" rel="noopener" id="instagram"
+                            target="_blank">
                             <div class="text-center">
                                 <div><i class="fab fa-instagram fa-lg"></i></div>
                             </div>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="text-black nav-link" href="" rel="noopener">
+                        <a class="text-black nav-link" href="https://twitter.com/fit534457" rel="noopener" id="x-twitter"
+                            target="_blank">
                             <div class="text-center">
                                 <div><i class="fa-brands fa-x-twitter"></i></div>
                             </div>
                         </a>
                     </li>
-                    <li class="list-inline-item">
-                        <a class="text-black nav-link" href="" rel="noopener">
+                    <li class="list-inline-item dropdown">
+                        <a class="text-black nav-link" href="#" id="base-mailchimp" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
-                                <div><i class="fa-brands fa-youtube"></i></div>
+                                <div><i class="fa-brands fa-mailchimp"></i></div>
                             </div>
                         </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="base-mailchimp">
+                            <div id="mc_embed_shell" style="display: none;">
+                                <div id="mc_embed_shell">
+                                    <div id="mc_embed_signup">
+                                        <form
+                                            action="https://herokuapp.us17.list-manage.com/subscribe/post?u=a21761f94ab5a5840fd97cba1&amp;id=7831999467&amp;f_id=004f44e2f0"
+                                            method="post" id="mc-embedded-subscribe-form"
+                                            name="mc-embedded-subscribe-form" class="validate" target="_blank">
+                                            <div id="mc_embed_signup_scroll">
+                                                <h2>Subscribe</h2>
+                                                <p>and recieve early tips on new products and hot topics in our
+                                                    community!</p>
+                                                <div class="indicates-required"><span class="asterisk">*</span>
+                                                    indicates required</div>
+                                                <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span
+                                                            class="asterisk">*</span></label><input type="email"
+                                                        name="EMAIL" class="required email" id="mce-EMAIL" required=""
+                                                        value=""></div>
+                                                <div id="mce-responses" class="clear foot">
+                                                    <div class="response" id="mce-error-response"
+                                                        style="display: none;"></div>
+                                                    <div class="response" id="mce-success-response"
+                                                        style="display: none;"></div>
+                                                </div>
+                                                <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                                                    /* real people should not fill this in and expect good things - do
+                                                    not remove this or risk
+                                                    form bot signups */
+                                                    <input type="text" name="b_a21761f94ab5a5840fd97cba1_7831999467"
+                                                        tabindex="-1" value="">
+                                                </div>
+                                                <div class="optionalParent">
+                                                    <div class="clear foot">
+                                                        <input type="submit" name="subscribe" id="mc-embedded-subscribe"
+                                                            class="button" value="Subscribe">
+                                                        <p style="margin: 0px auto;"><a href="http://eepurl.com/iPXhqk"
+                                                                title="Mailchimp - email marketing made easy and fun"><span
+                                                                    style="display: inline-block; background-color: transparent; border-radius: 4px;"><img
+                                                                        class="refferal_badge"
+                                                                        src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg"
+                                                                        alt="Intuit Mailchimp"
+                                                                        style="width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;"></span></a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="row bg-white">
             <nav class="navbar navbar-expand-lg navbar-light w-100">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
+                    aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 {% include 'includes/mobile-top-header.html' %}
@@ -109,41 +186,57 @@
         </div>
         <div id="delivery-banner" class="row text-center">
             <div class="col bg-black text-white">
-                <h4 class="logo-font my-1">Free delivery on orders over €{{ free_delivery_threshold }}!</h4>                
-            </div>            
+                <h4 class="logo-font my-1">Free delivery on orders over €{{ free_delivery_threshold }}!</h4>
+            </div>
         </div>
-  </header>
+    </header>
 
-  {% if messages %}
-      <div class="message-container">
+    {% if messages %}
+    <div class="message-container">
         {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %}
-                        {% include 'includes/toasts/toast_error.html' %}
-                    {% elif level == 30 %}
-                        {% include 'includes/toasts/toast_warning.html' %}
-                    {% elif level == 25 %}
-                        {% include 'includes/toasts/toast_success.html' %}
-                    {% else %}
-                        {% include 'includes/toasts/toast_info.html' %}
-                    {% endif %}
-                {% endwith %}
-            {% endfor %}
-      </div>
-  {% endif %}
+        {% with message.level as level %}
+        {% if level == 40 %}
+        {% include 'includes/toasts/toast_error.html' %}
+        {% elif level == 30 %}
+        {% include 'includes/toasts/toast_warning.html' %}
+        {% elif level == 25 %}
+        {% include 'includes/toasts/toast_success.html' %}
+        {% else %}
+        {% include 'includes/toasts/toast_info.html' %}
+        {% endif %}
+        {% endwith %}
+        {% endfor %}
+    </div>
+    {% endif %}
 
-  {% block page_header %}
-  {% endblock %}
+    {% block page_header %}
+    {% endblock %}
 
-  {% block content %}
-  {% endblock %}
+    {% block content %}
+    {% endblock %}
 
-  {% block postloadjs %}
-  <script type="text/javascript">
-    $('.toast').toast('show');
+    <footer>
+        {% include 'includes/mobile-footer.html' %}
+    </footer>
+
+    {% block postloadjs %}
+    <script type="text/javascript">
+        $('.toast').toast('show');
     </script>
-  {% endblock %}
+    <script type="text/javascript">
+        $('#mobile-mailchimp').click(function(e) {
+            // Get the offset of the target div
+            var targetOffset = $('#mc_embed_shell_mobile').offset().top;
+            // Scroll to the target div
+            $('html, body').animate({
+                scrollTop: targetOffset
+            }, 500); // Adjust the duration as needed
+        });
+    </script>
+    {% endblock %}
 
-  
 </body>
+
+
+
 </html>
