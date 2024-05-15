@@ -2,14 +2,14 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import Post, Subject
-from .forms import PostForm, CommentForm
+from .models import Post, Subject, Comment
+from .forms import PostForm, CommentForm, AdminPostForm, AdminCommentForm
 
 # Create your views here.
 
 def all_posts(request):
     
-    posts = Post.objects.filter(status=1)
+    posts = Post.objects.all()
     subjects = None    
 
     if request.GET:        
@@ -28,7 +28,7 @@ def all_posts(request):
 
 def post_detail(request, slug):
     
-    queryset = Post.objects.filter(status=1)
+    queryset = Post.objects.all()
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
@@ -98,7 +98,11 @@ def edit_post(request, slug):
         return redirect(reverse('home'))
         
     if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES, instance=post)
+        if request.user.is_superuser:
+            form = AdminPostForm(request.POST, request.FILES, instance=post)
+        else:
+            form = PostForm(request.POST, request.FILES, instance=post)
+
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated post!')
@@ -106,7 +110,10 @@ def edit_post(request, slug):
         else:
             messages.error(request, 'Failed to update post. Please ensure the form is valid.')
     else:
-        form = PostForm(instance=post)
+        if request.user.is_superuser:
+            form = AdminPostForm(instance=post)
+        else:
+            form = PostForm(instance=post)
         messages.info(request, f'You are editing {post.title}')
 
     template = 'community/edit_post.html'
@@ -129,3 +136,54 @@ def delete_post(request, slug):
     post.delete()
     messages.success(request, 'Post deleted!')
     return redirect(reverse('community'))
+
+@login_required
+def edit_comment(request, comment_id):
+    """ Edit a comment """
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    # Check if the user has permission to edit the comment
+    if not request.user.is_superuser and request.user != comment.user_profile.user:
+        messages.error(request, 'Sorry, only comment creator/site admin can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        if request.user.is_superuser:
+            form = AdminCommentForm(request.POST, request.FILES, instance=comment)
+        else:
+            form = CommentForm(request.POST, request.FILES, instance=comment)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Comment updated successfully.')
+            return redirect('community')
+        else:
+            messages.error(request, 'Failed to update comment. Please ensure the form is valid.')
+    else:
+        if request.user.is_superuser:
+            form = AdminCommentForm(instance=comment)
+        else:
+            form = CommentForm(instance=comment)
+
+    template = 'community/edit_comment.html'
+    context = {
+        'form': form,
+        'comment': comment,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def delete_comment(request, comment_id):
+    """ Delete a comment """
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    # Check if the user has permission to delete the comment
+    if request.user.is_superuser and request.user != comment.user_profile.user:
+        messages.error(request, 'You do not have permission to delete this comment.')
+        return redirect(reverse('home'))
+    
+    comment.delete()
+    messages.success(request, 'Comment deleted successfully.')
+    return redirect('community')
+

@@ -71,54 +71,64 @@
     {% endif %}
   </div>
 
+  {% if post.status == 0 %}
+  <div class="row d-none">
+  {% else %}
   <div class="row">
+  {% endif %}
     <div class="col-md-8 card mb-4 mt-3">
       <h3>Comments:</h3>
       <div class="card-body">
         {% for comment in comments %}
-          {% if not comment.approved %}
-            {% if request.user == comment.user_profile.user or request.user.is_superuser %}
-              <div class="p-2 comments faded">
-            {% else %}
-              <div class="p-2 d-none">
-            {% endif %}
+        {% if comment.approved == 0 %}
+        {% if request.user == comment.user_profile.user or request.user.is_superuser %}
+        <div class="p-2 comments faded">
           {% else %}
-              <div class="p-2 comments">
-          {% endif %}
-                <p class="font-weight-bold">
-                  {{ comment.user_profile }}
-                  <span class="font-weight-normal"> {{ comment.created_on }} </span>
-                  wrote:
-                </p>
-                <div class="pl-3" id="comment{{ comment.id }}">
-                  {{ comment.body | linebreaks }}
-                </div>
-                {% if not comment.approved %}
-                  {% if request.user == comment.user_profile.user or request.user.is_superuser %}                  
-                    <p class="approval">This comment is awaiting approval</p>
-                    {% endif %}
-                {% endif %}
+          <div class="p-2 d-none">
+            {% endif %}
+            {% else %}
+            <div class="p-2 comments">
+              {% endif %}
+              <p class="font-weight-bold">
+                {{ comment.user_profile }}
+                <span class="font-weight-normal"> {{ comment.created_on }} </span>
+                wrote:
+              </p>
+              <div class="pl-3" id="comment{{ comment.id }}">
+                {{ comment.body | linebreaks }}
               </div>
-        {% endfor %}
+              {% if comment.approved == 0 %}
+              {% if request.user == comment.user_profile.user or request.user.is_superuser %}
+              <p class="approval">This comment is awaiting approval</p>
+              {% endif %}
+              {% endif %}
+              {% if request.user == comment.user_profile.user or request.user.is_superuser %}
+              <small class="ml-3">
+                <a href="{% url 'edit_comment' comment.id %}">Edit</a> |
+                <a class="text-danger" href="{% url 'delete_comment' comment.id %}">Delete</a>
+              </small>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-md-4 card mb-4 mt-3">
+          <div class="card-body">
+            {% if user.is_authenticated %}
+            <h3>Leave a comment:</h3>
+            <p>Posting as: {{ user.username }}</p>
+            <form id="commentForm" method="post" style="margin-top: 1.3em">
+              {{ comment_form | crispy }} {% csrf_token %}
+              <button class="btn btn-black rounded-0" type="submit">Submit</button>
+            </form>            
+            {% else %}
+            <a href="{% url 'account_login' %}" class="btn btn-black rounded-0 my-2">
+              <span class="text-uppercase">Login to leave a comment</span>
+            </a>
+            {% endif %}
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-md-4 card mb-4 mt-3">
-      <div class="card-body">
-        {% if user.is_authenticated %}
-        <h3>Leave a comment:</h3>
-        <p>Posting as: {{ user.username }}</p>
-        <form id="commentForm" method="post" style="margin-top: 1.3em">
-          {{ comment_form | crispy }} {% csrf_token %}
-          <button class="btn btn-black rounded-0" type="submit">Submit</button>
-        </form>
-        {% else %}        
-          <a href="{% url 'account_login' %}" class="btn btn-black rounded-0 my-2">            
-            <span class="text-uppercase">Login to leave a comment</span>
-          </a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div>
 
 {% endblock content %}

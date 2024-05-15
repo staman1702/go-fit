@@ -119,6 +119,10 @@ input[name='q']::placeholder {
     color: rgb(172, 175, 175);
 }
 
+.fade-me {
+    opacity: 0.5;
+}
+
 .approval {
     color: rgb(222, 146, 168);
 }
