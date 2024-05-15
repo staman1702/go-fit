@@ -12,7 +12,7 @@ class ChallengeForm(forms.ModelForm):
         model = Challenge
         fields = ('title', 'content', 'start_date',
                   'end_date', 'main_image_url', 'main_image',
-                  'status',)
+                  'subjects', 'status',)
         widgets = {
             'subjects': forms.CheckboxSelectMultiple,
         }
