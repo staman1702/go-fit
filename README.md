@@ -1,6 +1,6 @@
 # GO FIT
 
-Go Fit is a student-made B2C e-commerce application which sells fitness products directly to end customers, but is also intended to give users a place to log their fitness jurney and connect with other users that share the same interest in phisical improvement. 
+Go Fit is a student-made B2C e-commerce application which sells fitness products directly to end customers, but is also intended to give users a place to log their fitness journey and connect with other users that share the same interest in physical improvement. 
 
 The application was deployed using Heroku and can be found here: [GO FIT](https://go-fit-493a972aae08.herokuapp.com/)
 
@@ -8,7 +8,7 @@ It is my final milestone project for the Code Institute Diploma in Full Stack So
 
 Core part of site is a retail store where users can view, search and filter the products, then select items to add to their shopping cart and purchase through a secure single payment.
 
-All users can view details of the products available for purchase, and can sign up to the company newletter. In addition, registered users can acces their profile where they can keep track of delivery details, order history and community posting history. Community section allows registered users to interact with other users via posts and comments, and incetivises occuring visitors to create an account to join or start various fitness topics. 
+All users can view details of the products available for purchase, and can sign up to the company newsletter. In addition, registered users can access their profile where they can keep track of delivery details, order history and community posting history. Community section allows registered users to interact with other users via posts and comments, and incetivises occuring visitors to create an account to join or start various fitness topics. 
 
 Admin users can manage products, challenges, posts and comments. This includes being able to add new products to the store, update product details, add new challenges, update existing ones, approve and edit community posts and comments.
 
