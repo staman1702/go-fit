@@ -227,13 +227,11 @@
         $('.toast').toast('show');
     </script>
     <script type="text/javascript">
-        $('#mobile-mailchimp').click(function(e) {
-            // Get the offset of the target div
-            var targetOffset = $('#mc_embed_shell_mobile').offset().top;
-            // Scroll to the target div
+        $('#mobile-mailchimp').click(function(e) {            
+            var targetOffset = $('#mc_embed_shell_mobile').offset().top;            
             $('html, body').animate({
                 scrollTop: targetOffset
-            }, 500); // Adjust the duration as needed
+            }, 500);
         });
     </script>
     {% endblock %}

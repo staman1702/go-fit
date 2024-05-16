@@ -69,7 +69,6 @@ def challenge_detail(request, slug):
 def edit_challenge(request, slug):
     challenge = get_object_or_404(Challenge, slug=slug)
 
-    # Check if the current user is superuser
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only the store owner can edit challenges.')
         return redirect(reverse('challenge_detail', args=[slug]))

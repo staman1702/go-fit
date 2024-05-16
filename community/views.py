@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from .models import Post, Subject, Comment
 from .forms import PostForm, CommentForm, AdminPostForm, AdminCommentForm
 
-# Create your views here.
 
 def all_posts(request):
     
@@ -142,7 +141,6 @@ def edit_comment(request, comment_id):
     """ Edit a comment """
     comment = get_object_or_404(Comment, id=comment_id)
 
-    # Check if the user has permission to edit the comment
     if not request.user.is_superuser and request.user != comment.user_profile.user:
         messages.error(request, 'Sorry, only comment creator/site admin can do that.')
         return redirect(reverse('home'))
@@ -178,7 +176,6 @@ def delete_comment(request, comment_id):
     """ Delete a comment """
     comment = get_object_or_404(Comment, id=comment_id)
 
-    # Check if the user has permission to delete the comment
     if request.user.is_superuser and request.user != comment.user_profile.user:
         messages.error(request, 'You do not have permission to delete this comment.')
         return redirect(reverse('home'))

@@ -3,8 +3,6 @@ from django.utils.text import slugify
 from community.models import Subject
 
 STATUS = ((0, "Active"), (1, "Archived"))
-
-# Create your models here.
    
 class Challenge(models.Model):
     title = models.CharField(max_length=200, unique=True)
