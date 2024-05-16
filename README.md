@@ -170,7 +170,42 @@ Responsive/Mobile-first design was tested using Chrome developer tools to ensure
 
 - CSS was Validated using the [CSS Validator](https://jigsaw.w3.org/css-validator/).
 
-- Python Validation was performed installing flake8 (command : pip install flake8) and using it (command : python -m flake8). No serious errors reported. 
+- Python Validation was performed installing flake8 (command : pip install flake8) and using it (command : python -m flake8). No serious errors reported.
+
+### Manual User Story Testing
+
+- As a user, I want to view a list of products - Pass
+- As a user, I want to view a specific category of products - Pass
+- As a user, I want to view individual product details - Pass
+- As a user, I want to sort the list of available products - Pass
+- As a user, I want to sort a specific category of products - Pass
+- As a user, I want to sort multiple categories of products simultaneously - Pass
+- As a user, I want to search for a product by name or description - Pass
+- As a user, I want to easily see what I've searched for and the number of results - Pass
+- As a user, I want to easily see the size and quantity of a product when purchasing it - Pass
+- As a user, I want to view items in my bag to be purchased - Pass
+- As a user, I want to adjust the quantity of individual items in my bag - Pass
+- As a user, I want to easily enter my payment information - Pass
+- As a user, I want to feel my personal and payment information is safe and secure - Pass
+- As a user, I want to view an order confirmation after check out - Pass
+- As a user, I want to receive an email confirmation after checking out - Pass
+- As a user, I want to register for an account - Pass
+- As a user, I want to login/logout - Pass
+- As a user, I want to receive an email confirmation after registering - Pass
+- As a user, I want to have a personalized user profile - Pass
+- As a user, I want to view list of community posts - Pass
+- As a user, I want to open a post - Pass
+- As a user, I want to view comments for Posts - Pass
+- As a user, I want to manage my posts - Pass
+- As a user, I want to manage my comments - Pass
+- As a user, I want to find the site through the web search engines - Pass
+- As a user, I want to view a list of challenges - Pass
+- As a user, I want to subscribe to newsletter - Pass
+- As a user, I want to add a product - Pass
+- As a user, I want to edit/update a product - Pass
+- As a user, I want to delete a product - Pass
+- As a user, I want to add a challenge - Pass
+- As a user, I want to edit/update a challenge - Pass
 
 ## Deployment
 
