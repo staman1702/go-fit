@@ -166,16 +166,15 @@ Deployed on Heroku using the master branch on GitHub. To implement this project 
     - echo web: python run.py > Procfile
 3. Sign up for a free Heroku account, create your project app, and click the Deploy tab, at which point you can Connect GitHub as the Deployment Method, and select Enable Automatic Deployment.
 4. In the Heroku Settings tab, click on the Reveal Config Vars button to configure environmental variables as follows:
-| Key                    | Value                                    |
-|------------------------|------------------------------------------|
-| AWS_ACCESS_KEY_ID      | `<your secret key>`                      |
-| AWS_SECRET_ACCESS_KEY  | `<your secret key>`                      |
-| USE_AWS                | `True`                                   |
-| DATABASE_URL           | `<your postgres database url>`           |
-| SECRET_KEY             | `<your secret key>`                      |
-| STRIPE_PUBLIC_KEY      | `<your secret key>`                      |
-| STRIPE_SECRET_KEY      | `<your secret key>`                      |
-| STRIPE_WH_SECRET       | `<your secret key>`                      |
+    - Key:Value 
+    - AWS_ACCESS_KEY_ID      : `<your secret key>` 
+    - AWS_SECRET_ACCESS_KEY  : `<your secret key>`
+    - USE_AWS                : `True`
+    - DATABASE_URL           : `<your postgres database url>`
+    - SECRET_KEY             : `<your secret key>`
+    - STRIPE_PUBLIC_KEY      : `<your secret key>`
+    - STRIPE_SECRET_KEY      : `<your secret key>`
+    - STRIPE_WH_SECRET       : `<your secret key>`
 5. App should be successfully deployed to Heroku at this point.
 6. From the command line of the IDE:
     - Enter heroku postres shell
