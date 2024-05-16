@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['go-fit-493a972aae08.herokuapp.com', '127.0.0.1', 'localhost']
 
