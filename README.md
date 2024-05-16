@@ -126,6 +126,28 @@ A key future store owner feature will be:
 
 - All user profiles and the most important information is visible as well
 
+### Marketing Related Features
+
+- Subscribe to Newsletter
+    As part of the web marketing strategy for the application, functionality to subscribe to a company newsletter was added. The subscribe feature is available by clicking the mailchimp icon in header. On regular screens subscription form is a pop up, while on smaller screens it is in the footer of each page on the site. The user simply has to enter an email address and click on the Subscribe button to sign up. The subscription list is managed by mailchimp website https://mailchimp.com/.
+
+     Subscribe to newsletter (regular sized screen):
+
+    Subscribe to newsletter (small screens):
+
+- Social media
+    Another part of the web marketing strategy is to use social media to promote the site. A Facebook and Instagram pages, and X (Twitter) account ware created and a link to this appears in the header of each page on the site.
+
+    1. Facebook (https://www.facebook.com/profile.php?id=61559866552324)
+
+        ![Facebook](media/screenshots/facebook_marketing.png)
+
+    2. Instagram (https://www.instagram.com/gofit8298/)
+
+    3. X (https://twitter.com/fit534457)
+
+
+
 ## Testing
 
 ### General
