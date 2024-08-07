@@ -24,7 +24,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['go-fit-493a972aae08.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['go-fit-493a972aae08.herokuapp.com', '127.0.0.1', 'localhost', '8000-staman1702-gofit-9c3yfkmotxr.ws.codeinstitute-ide.net']
 
 
 
@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'go_fit.urls'
